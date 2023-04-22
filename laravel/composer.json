@@ -28,9 +28,13 @@
     "autoload": {
         "psr-4": {
             "App\\": "app/",
+            "Src\\": "src/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
-        }
+        },
+        "classmap": [
+            "src/ApplicationServices"
+        ]
     },
     "autoload-dev": {
         "psr-4": {

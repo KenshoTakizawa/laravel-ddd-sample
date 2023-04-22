@@ -5,6 +5,7 @@ namespace App\Repositories\User;
 
 use App\ApplicationService\Commands\UserCreateCommand;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
@@ -16,6 +17,7 @@ class UserRepository {
 
     /**
      * @param UserCreateCommand $command
+     * @throws \Exception
      */
     public function create(UserCreateCommand $command): User
     {
@@ -24,11 +26,13 @@ class UserRepository {
         DB::transaction(function () use ($user) {
             if ($user->save()) {
 
-                return $user;
+                return true;
             }
 
             throw new \Exception();
         });
+
+        return $user;
     }
 
     /**
@@ -36,7 +40,7 @@ class UserRepository {
      *
      * @return Model
      */
-    protected function createUserStub(UserCreateCommand $command): MODEL
+    protected function createUserStub(UserCreateCommand $command): User
     {
         $user = self::MODEL;
         $user = new $user();
@@ -45,5 +49,13 @@ class UserRepository {
         $user->premier = $command->isPremier();
 
         return $user;
+    }
+
+    /**
+     * @return Collection<>
+     */
+    public function getUsers(): Collection
+    {
+        return User::all();
     }
 }
