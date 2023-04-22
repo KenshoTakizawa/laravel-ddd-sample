@@ -30,7 +30,6 @@ class PostController extends Controller {
     #[Post('api/users')]
     public function __invoke(PostRequest $request)
     {
-        dd(1);
         $command = new UserCreateCommand(
           $request->input('name'),
           $request->input('email'),
