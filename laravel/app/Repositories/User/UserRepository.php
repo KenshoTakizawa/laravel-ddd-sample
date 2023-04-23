@@ -3,13 +3,15 @@
 namespace App\Repositories\User;
 
 
-use App\ApplicationService\Commands\UserCreateCommand;
 use App\Models\User;
+use Exception;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Src\ApplicationServices\Commands\UserCreateCommand;
 
-class UserRepository {
+class UserRepository implements IUserRepository
+{
     /**
      * Associated Repository Model.
      */
@@ -17,7 +19,7 @@ class UserRepository {
 
     /**
      * @param UserCreateCommand $command
-     * @throws \Exception
+     * @throws Exception
      */
     public function create(UserCreateCommand $command): User
     {
@@ -29,7 +31,7 @@ class UserRepository {
                 return true;
             }
 
-            throw new \Exception();
+            throw new Exception();
         });
 
         return $user;

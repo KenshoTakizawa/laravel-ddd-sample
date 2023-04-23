@@ -2,7 +2,8 @@
 
 namespace Src\ApplicationServices\Commands;
 
-class UserCreateCommand {
+class UserChangeCommand
+{
     private string $name;
     private string $email;
     private bool $premier;

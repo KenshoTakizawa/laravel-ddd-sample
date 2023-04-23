@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Users;
 
 
-use App\ApplicationService\Commands\UserCreateCommand;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Users\PostRequest;
 use Spatie\RouteAttributes\Attributes\Post;
-use Src\ApplicationService\UserApplicationService;
+use Src\ApplicationServices\UserApplicationService;
+use Src\ApplicationServices\Commands\UserCreateCommand;
 
 class PostController extends Controller
 {
