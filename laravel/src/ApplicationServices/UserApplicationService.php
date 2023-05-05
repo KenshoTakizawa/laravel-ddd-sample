@@ -5,6 +5,7 @@ namespace Src\ApplicationServices;
 use App\Models\User;
 use App\Repositories\User\IUserRepository;
 use Illuminate\Database\Eloquent\Collection;
+use Src\ApplicationServices\Commands\UserChangeCommand;
 use Src\ApplicationServices\Commands\UserCreateCommand;
 
 class UserApplicationService
@@ -29,5 +30,10 @@ class UserApplicationService
     public function getUser(int $userId): User
     {
         return User::find($userId);
+    }
+
+    public function updateUser(User $user, UserChangeCommand $command): User
+    {
+        return $this->repository->updateUser($user, $command);
     }
 }

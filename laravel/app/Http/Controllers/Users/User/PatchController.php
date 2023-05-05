@@ -6,8 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Users\User\PatchRequest;
 use App\Models\User;
 use Spatie\RouteAttributes\Attributes\Patch;
-use Src\ApplicationServices\UserApplicationService;
 use Src\ApplicationServices\Commands\UserChangeCommand;
+use Src\ApplicationServices\UserApplicationService;
 
 class PatchController extends Controller
 {
@@ -27,6 +27,19 @@ class PatchController extends Controller
             $user->getAttributeValue('premier'),
         );
 
-        dd($command);
+        if ($request->has('name')) {
+            $command->setName('name');
+        }
+
+        if ($request->has('email')) {
+            $command->setEmail('email');
+        }
+
+        if ($request->has('premier')) {
+            $command->setPremier('premier');
+        }
+
+        return $this->service->updateUser($user, $command);
     }
 }
+

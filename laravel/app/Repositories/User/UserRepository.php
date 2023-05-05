@@ -8,6 +8,7 @@ use Exception;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Src\ApplicationServices\Commands\UserChangeCommand;
 use Src\ApplicationServices\Commands\UserCreateCommand;
 
 class UserRepository implements IUserRepository
@@ -53,11 +54,36 @@ class UserRepository implements IUserRepository
         return $user;
     }
 
+    protected function updateUserStub(User $user, UserChangeCommand $command): User
+    {
+        $user->name = $command->getName();
+        $user->email = $command->getEmail();
+        $user->premier = $command->isPremier();
+
+        return $user;
+    }
+
     /**
      * @return Collection<>
      */
     public function getUsers(): Collection
     {
         return User::all();
+    }
+
+    public function updateUser(User $user, UserChangeCommand $command): User
+    {
+        $user = $this->updateUserStub($user, $command);
+
+        DB::transaction(function () use ($user) {
+            if ($user->save()) {
+
+                return true;
+            }
+
+            throw new Exception();
+        });
+
+        return $user;
     }
 }
