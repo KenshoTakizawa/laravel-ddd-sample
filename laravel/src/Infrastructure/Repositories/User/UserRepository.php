@@ -91,11 +91,4 @@ class UserRepository implements IUserRepository
     {
         return User::find($userId);
     }
-
-    public function updateUser(User $user): User
-    {
-        $user->save();
-
-        return $user;
-    }
 }
