@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repositories\User;
+namespace Src\Infrastructure\Repositories\User;
 
 
 use App\Models\User;
@@ -8,8 +8,8 @@ use Exception;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
-use Src\ApplicationServices\Commands\UserChangeCommand;
-use Src\ApplicationServices\Commands\UserCreateCommand;
+use Src\Application\ApplicationServices\Commands\UserChangeCommand;
+use Src\Application\ApplicationServices\Commands\UserCreateCommand;
 
 class UserRepository implements IUserRepository
 {
@@ -83,6 +83,18 @@ class UserRepository implements IUserRepository
 
             throw new Exception();
         });
+
+        return $user;
+    }
+
+    public function getUser(int $userId): User
+    {
+        return User::find($userId);
+    }
+
+    public function updateUser(User $user): User
+    {
+        $user->save();
 
         return $user;
     }

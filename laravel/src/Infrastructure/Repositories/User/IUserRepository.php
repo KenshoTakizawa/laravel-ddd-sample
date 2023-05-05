@@ -1,15 +1,12 @@
 <?php
 
-namespace App\Repositories\User;
+namespace Src\Infrastructure\Repositories\User;
 
 
 use App\Models\User;
-use Exception;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\DB;
-use Src\ApplicationServices\Commands\UserChangeCommand;
-use Src\ApplicationServices\Commands\UserCreateCommand;
+use Src\Application\ApplicationServices\Commands\UserChangeCommand;
+use Src\Application\ApplicationServices\Commands\UserCreateCommand;
 
 Interface IUserRepository
 {
@@ -18,4 +15,6 @@ Interface IUserRepository
     public function getUsers(): Collection;
 
     public function updateUser(User $user, UserChangeCommand $command): User;
+
+    public function getUser(int $userId): User;
 }

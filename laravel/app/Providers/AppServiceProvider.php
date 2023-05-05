@@ -2,10 +2,10 @@
 
 namespace App\Providers;
 
-use App\Repositories\User\IUserRepository;
-use App\Repositories\User\UserRepository;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Sanctum\Sanctum;
+use Src\Infrastructure\Repositories\User\IUserRepository;
+use Src\Infrastructure\Repositories\User\UserRepository;
 
 class AppServiceProvider extends ServiceProvider
 {

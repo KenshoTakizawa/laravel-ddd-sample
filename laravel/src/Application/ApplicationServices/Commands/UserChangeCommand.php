@@ -1,8 +1,9 @@
 <?php
 
-namespace Src\ApplicationServices\Commands;
+namespace Src\Application\ApplicationServices\Commands;
 
-class UserCreateCommand {
+class UserChangeCommand
+{
     private string $name;
     private string $email;
     private bool $premier;

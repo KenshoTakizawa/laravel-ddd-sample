@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Users;
 use App\Http\Controllers\Controller;
 use Illuminate\Database\Eloquent\Collection;
 use Spatie\RouteAttributes\Attributes\Get;
-use Src\ApplicationServices\UserApplicationService;
+use Src\Application\ApplicationServices\UserApplicationService;
 
 class GetController extends Controller
 {

@@ -6,8 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Users\User\PatchRequest;
 use App\Models\User;
 use Spatie\RouteAttributes\Attributes\Patch;
-use Src\ApplicationServices\Commands\UserChangeCommand;
-use Src\ApplicationServices\UserApplicationService;
+use Src\Application\ApplicationServices\Commands\UserChangeCommand;
+use Src\Application\ApplicationServices\UserApplicationService;
 
 class PatchController extends Controller
 {
