@@ -36,4 +36,9 @@ class UserApplicationService
     {
         return $this->repository->updateUser($user, $command);
     }
+
+    public function deleteUser(User $user): void
+    {
+        $this->repository->deleteUser($user);
+    }
 }

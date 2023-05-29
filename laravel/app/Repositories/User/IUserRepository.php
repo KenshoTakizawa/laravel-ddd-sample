@@ -11,11 +11,13 @@ use Illuminate\Support\Facades\DB;
 use Src\ApplicationServices\Commands\UserChangeCommand;
 use Src\ApplicationServices\Commands\UserCreateCommand;
 
-Interface IUserRepository
+interface IUserRepository
 {
     public function create(UserCreateCommand $command): User;
 
     public function getUsers(): Collection;
 
     public function updateUser(User $user, UserChangeCommand $command): User;
+
+    public function deleteUser(User $user): void;
 }
